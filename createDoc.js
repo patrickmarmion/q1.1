@@ -3,8 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 // Initialize express and define a port
-const app = express()
-const PORT = 5000
+const app = express();
+const port = process.env.PORT || 5000;
 
 // Tell express to use body-parser's JSON parsing
 app.use(bodyParser.json())
@@ -12,15 +12,17 @@ app.use(bodyParser.json())
 app.get('/', function(req, res, next) {
     res.send("Hello world");
 });
-
 app.use(bodyParser.json())
+
+// Start express on the defined port
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
 app.post("/hook", (req, res) => {
     console.log('received webhook', req.body) // Call your action on the request here
     res.status(200).end() // Responding is important
 })
-
-// Start express on the defined port
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 
 
 const request = require('request-promise');
