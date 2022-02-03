@@ -1,0 +1,4 @@
+.env
+node_modules/
+ngrok
+Q1.1.js
