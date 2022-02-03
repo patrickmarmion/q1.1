@@ -20,7 +20,7 @@ app.post("/hook", (req, res) => {
 })
 
 // Start express on the defined port
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 
 
 const request = require('request-promise');
@@ -30,7 +30,7 @@ require('dotenv').config();
     try {
         const api_key = process.env.API_KEY;
         // get pandadoc document details
-        const deal = await request({
+        const doc = await request({
             method: 'POST',
             url: 'https://api.pandadoc.com/public/v1/documents',
             headers: {
@@ -43,7 +43,7 @@ require('dotenv').config();
                     "template_uuid": "eJuhzhK3NAGEhXhMyDHT4P",
                     "recipients": [
                         {
-                            "email": "patrick.marmion@pandadoc.com",
+                            "email": "patrice.marmion@test.com",
                             "first_name": "Patrice",
                             "last_name": "Marmion",
                             "role": "Client"
@@ -52,7 +52,7 @@ require('dotenv').config();
                 }
             )
         });
-        console.log(deal);
+        console.log(doc);
     } catch (e) {
         console.log('Our error', e);
     }
